@@ -1,0 +1,36 @@
+﻿  
+	1. Использование команды cat в Linux
+
+  cat > Pets.txt
+  cat > Pack animals.txt
+  cat Pets.txt Pack_animals.txt > Animals.txt
+  cat Animals.txt 
+  mv Animals.txt Human_Friends.txt
+  cat Human_Friends.txt 
+  ls -a
+  
+	2. Работа с директориями в Linux
+
+  mkdir Human_Friends
+  mv ./Human_Friends.txt ./Human_Friends 
+  ls -a
+
+	3. Работа  с MySQL в Linux. “Установить MySQL на вашу вычислительную машину ”
+
+  wget http://repo.mysql.com/apt//dists/utopic/mysql-apt-config/binary-i386/Packages
+  sudo dpkg -i mysql-apt-config_0.5.3-1_all.deb
+  sudo apt update
+  sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B7B3B788A8D3785C
+  sudo apt update
+  sudo apt install mysql-server-5.7
+
+	4. Управление deb-пакетами
+
+  wget http://ftp.ru.debian.org/debian/pool/main/p/postgresql-common/postgresql-client-common_263_all.deb
+  sudo dpkg -i postgresql-client-common_263_all.deb
+  sudo dpkg -r postgresql-client-common
+  sudo apt update
+
+	5. История команд в терминале Ubuntu
+
+  history | cat > history.txt

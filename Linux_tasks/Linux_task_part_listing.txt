@@ -1,0 +1,164 @@
+   Static hostname: LinuxServer
+    Virtualization: oracle
+  Operating System: Ubuntu 16.04.7 LTS
+            Kernel: Linux 4.4.0-142-generic
+      Architecture: x86
+
+1. Использование команды cat в Linux
+
+   - Создать два текстовых файла: "Pets"(Домашние животные) и "Pack animals"(вьючные животные), используя команду `cat` в терминале Linux.
+В первом файле перечислить собак, кошек и хомяков. Во втором — лошадей, верблюдов и ослов.
+
+	max@LinuxServer:~$ cat > Pets.txt
+	собаки
+	кошки
+	хомяки
+	^C
+
+	max@LinuxServer:~$ cat > Pack_animals.txt
+	лошади
+	верблюды
+	ослы
+	^C
+
+   - Объединить содержимое этих двух файлов в один и просмотреть его содержимое.
+
+	max@LinuxServer:~$ cat Pets.txt Pack_animals.txt > Animals.txt
+
+	max@LinuxServer:~$ cat Animals.txt
+	собаки
+	кошки
+	хомяки
+	лошади
+	верблюды
+	ослы
+
+   - Переименовать получившийся файл в "Human Friends".
+
+	max@LinuxServer:~$ mv Animals.txt Human_Friends.txt
+
+	max@LinuxServer:~$ ls -a
+
+	.   .bash_logout  .cache   Human_Friends.txt  Pack              Pets.txt  .sudo_as_admin_successful
+	..  .bashrc       .config  .local             Pack_animals.txt  .profile
+
+2. Работа с директориями в Linux
+   - Создать новую директорию и переместить туда файл "Human Friends".
+
+	max@LinuxServer:~$ mkdir Human_Friends
+
+	max@LinuxServer:~$ mv ./Human_Friends.txt ./Human_Friends
+
+	max@LinuxServer:~$ ls
+	Human_Friends  Pack_animals.txt  Pets.txt
+
+3. Работа с MySQL в Linux. “Установить MySQL на вашу вычислительную машину ”
+   - Подключить дополнительный репозиторий MySQL и установить один из пакетов из этого репозитория.
+
+	max@LinuxServer:~$ wget https://dev.mysql.com/get/mysql-apt-config_0.5.3-1_all.deb
+	--2024-09-29 21:06:09--  https://dev.mysql.com/get/mysql-apt-config_0.5.3-1_all.deb
+	Resolving dev.mysql.com (dev.mysql.com)... 23.211.74.232, 2a02:26f0:d8:39e::2e31, 2a02:26f0:d8:383::2e31
+	Connecting to dev.mysql.com (dev.mysql.com)|23.211.74.232|:443... connected.
+	HTTP request sent, awaiting response... 302 Moved Temporarily
+	Location: https://repo.mysql.com//mysql-apt-config_0.5.3-1_all.deb [following]
+	--2024-09-29 21:06:09--  https://repo.mysql.com//mysql-apt-config_0.5.3-1_all.deb
+	Resolving repo.mysql.com (repo.mysql.com)... 23.211.42.21, 2a02:26f0:d8:98f::1d68, 2a02:26f0:d8:980::1d68
+	Connecting to repo.mysql.com (repo.mysql.com)|23.211.42.21|:443... connected.
+	HTTP request sent, awaiting response... 200 OK
+	Length: 19746 (19K) [application/x-debian-package]
+	Saving to: ‘mysql-apt-config_0.5.3-1_all.deb’
+	
+	mysql-apt-config_0.5.3-1_all. 100%[=================================================>]  19,28K  --.-KB/s    in 0,003s
+	
+	2024-09-29 21:06:10 (7,40 MB/s) - ‘mysql-apt-config_0.5.3-1_all.deb’ saved [19746/19746]
+
+	max@LinuxServer:~$ sudo dpkg -i mysql-apt-config_0.5.3-1_all.deb
+	Выбор ранее не выбранного пакета mysql-apt-config.
+	(Чтение базы данных … на данный момент установлено 97322 файла и каталога.)
+	Подготовка к распаковке mysql-apt-config_0.5.3-1_all.deb …
+	Распаковывается mysql-apt-config (0.5.3-1) на замену (0.8.32-1) …
+	Настраивается пакет mysql-apt-config (0.5.3-1) …
+	OK
+
+	max@LinuxServer:~$ sudo apt update
+	Сущ:1 http://by.archive.ubuntu.com/ubuntu xenial InRelease
+	Сущ:2 http://by.archive.ubuntu.com/ubuntu xenial-updates InRelease
+	Сущ:3 http://by.archive.ubuntu.com/ubuntu xenial-backports InRelease
+	Сущ:4 http://security.ubuntu.com/ubuntu xenial-security InRelease
+	Пол:5 http://repo.mysql.com/apt/ubuntu xenial InRelease [22,2 kB]
+	Ошб:5 http://repo.mysql.com/apt/ubuntu xenial InRelease
+	  Следующие подписи не могут быть проверены, так как недоступен открытый ключ: NO_PUBKEY B7B3B788A8D3785C
+	Чтение списков пакетов… Готово
+	W: Ошибка GPG: http://repo.mysql.com/apt/ubuntu xenial InRelease: Следующие подписи не могут быть проверены, так как недоступен открытый ключ: NO_PUBKEY B7B3B788A8D3785C
+	E: Репозиторий «http://repo.mysql.com/apt/ubuntu xenial InRelease» не подписан.
+	N: Обновление из этого репозитория нельзя выполнить безопасным способом, поэтому по умолчанию он отключён.
+	N: Информацию о создании репозитория и настройках пользователя смотрите в справочной странице apt-secure(8).
+
+	max@LinuxServer:~$ sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B7B3B788A8D3785C
+	Executing: /tmp/tmp.KjU5NMigP6/gpg.1.sh --recv-keys
+	--keyserver
+	keyserver.ubuntu.com
+	B7B3B788A8D3785C
+	gpg: requesting key A8D3785C from hkp server keyserver.ubuntu.com
+	gpg: key A8D3785C: public key "MySQL Release Engineering <mysql-build@oss.oracle.com>" imported
+	gpg: Total number processed: 1
+	gpg:               imported: 1  (RSA: 1)
+
+	max@LinuxServer:~$ sudo apt update
+	Сущ:1 http://by.archive.ubuntu.com/ubuntu xenial InRelease
+	Сущ:2 http://by.archive.ubuntu.com/ubuntu xenial-updates InRelease
+	Сущ:3 http://by.archive.ubuntu.com/ubuntu xenial-backports InRelease
+	Сущ:4 http://security.ubuntu.com/ubuntu xenial-security InRelease
+	Пол:5 http://repo.mysql.com/apt/ubuntu xenial InRelease [22,2 kB]
+	Пол:6 http://repo.mysql.com/apt/ubuntu xenial/mysql-5.7 Sources [970 B]
+	Пол:7 http://repo.mysql.com/apt/ubuntu xenial/mysql-apt-config i386 Packages [566 B]
+	Пол:8 http://repo.mysql.com/apt/ubuntu xenial/mysql-5.7 i386 Packages [5 657 B]
+	Получено 29,4 kB за 11с (2 609 B/s)
+	Чтение списков пакетов… Готово
+	Построение дерева зависимостей
+	Чтение информации о состоянии… Готово
+	Может быть обновлён 1 пакет. Запустите «apt list --upgradable» для показа.
+
+
+	max@LinuxServer:~$ sudo apt install mysql-server-5.7
+	....
+	Следующие НОВЫЕ пакеты будут установлены:
+	  libaio1 libcgi-fast-perl libcgi-pm-perl libencode-locale-perl libfcgi-perl libhtml-parser-perl libhtml-tagset-perl
+	  libhtml-template-perl libhttp-date-perl libhttp-message-perl libio-html-perl liblwp-mediatypes-perl libtimedate-perl
+	  liburi-perl mysql-client-5.7 mysql-client-core-5.7 mysql-common mysql-server-5.7 mysql-server-core-5.7
+	Обновлено 0 пакетов, установлено 19 новых пакетов, для удаления отмечено 0 пакетов, и 0 пакетов не обновлено.
+	.....
+
+4. Управление deb-пакетами
+   - Установить и затем удалить deb-пакет, используя команду `dpkg`.
+
+	max@LinuxServer:~$ wget http://ftp.ru.debian.org/debian/pool/main/p/postgresql-common/postgresql-client-common_263_all.deb
+	--2024-09-29 23:33:14--  http://ftp.ru.debian.org/debian/pool/main/p/postgresql-common/postgresql-client-common_263_all.deb
+	Resolving ftp.ru.debian.org (ftp.ru.debian.org)... 85.143.112.112
+	Connecting to ftp.ru.debian.org (ftp.ru.debian.org)|85.143.112.112|:80... connected.
+	HTTP request sent, awaiting response... 200 OK
+	Length: 36312 (35K) [application/octet-stream]
+	Saving to: ‘postgresql-client-common_263_all.deb’
+	
+	postgresql-client-common_263_ 100%[=================================================>]  35,46K  --.-KB/s    in 0,05s
+	
+	2024-09-29 23:33:14 (768 KB/s) - ‘postgresql-client-common_263_all.deb’ saved [36312/36312]
+	
+	max@LinuxServer:~$ sudo dpkg -i postgresql-client-common_263_all.deb
+	Выбор ранее не выбранного пакета postgresql-client-common.
+	(Чтение базы данных … на данный момент установлено 97868 файлов и каталогов.)
+	Подготовка к распаковке postgresql-client-common_263_all.deb …
+	Распаковывается postgresql-client-common (263) …
+	Настраивается пакет postgresql-client-common (263) …
+	Обрабатываются триггеры для man-db (2.7.5-1) …
+	
+	max@LinuxServer:~$ sudo dpkg -r postgresql-client-common
+	(Чтение базы данных … на данный момент установлено 97904 файла и каталога.)
+	Удаляется postgresql-client-common (263) …
+	Обрабатываются триггеры для man-db (2.7.5-1) …
+	
+
+5. История команд в терминале Ubuntu
+   - Сохранить и выложить историю ваших терминальных команд в Ubuntu.
+
+	max@LinuxServer:~$ history | cat > history.txt
