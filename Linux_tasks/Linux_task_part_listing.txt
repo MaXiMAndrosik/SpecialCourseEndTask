@@ -10,15 +10,15 @@
 В первом файле перечислить собак, кошек и хомяков. Во втором — лошадей, верблюдов и ослов.
 
 	max@LinuxServer:~$ cat > Pets.txt
-	собаки
-	кошки
-	хомяки
+	собаки: Fido, Buddy, Bella
+	кошки: Whiskers, Smudge, Oliver
+	хомяки: Hammy, Peanut
 	^C
 
 	max@LinuxServer:~$ cat > Pack_animals.txt
-	лошади
-	верблюды
-	ослы
+	лошади: Thunder, Storm, Blaze
+	верблюды: Sandy, Dune, Sahara
+	ослы: Eeyore, Burro
 	^C
 
    - Объединить содержимое этих двух файлов в один и просмотреть его содержимое.
@@ -26,12 +26,12 @@
 	max@LinuxServer:~$ cat Pets.txt Pack_animals.txt > Animals.txt
 
 	max@LinuxServer:~$ cat Animals.txt
-	собаки
-	кошки
-	хомяки
-	лошади
-	верблюды
-	ослы
+	собаки: Fido, Buddy, Bella
+	кошки: Whiskers, Smudge, Oliver
+	хомяки: Hammy, Peanut
+	лошади: Thunder, Storm, Blaze
+	верблюды: Sandy, Dune, Sahara
+	ослы: Eeyore, Burro
 
    - Переименовать получившийся файл в "Human Friends".
 
