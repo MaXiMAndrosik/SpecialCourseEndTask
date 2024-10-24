@@ -68,10 +68,6 @@ public class Presenter implements Contract.Presenter {
                 view.printAnswer(service.loadRegistry(file_name));
         }
 
-        // public void saveRegistry() {
-        //         view.printAnswer(service.saveRegistry());                
-        // }
-
         public void sortByName() {
                 service.sortByName();
                 getAllAnimalsInfo();
@@ -83,9 +79,7 @@ public class Presenter implements Contract.Presenter {
         }
 
         public void exit() {
-                // view.printAnswer(service.saveRegistry());
                 view.printAnswer("Завершение работы приложения...");
         }
-
 
 }

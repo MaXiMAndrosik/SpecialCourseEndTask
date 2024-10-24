@@ -1,10 +1,7 @@
-package model.animals.classesTypes;
+package model.animals.animalTypes;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import model.animals.animalTypes.PackAnimals;
-import model.animals.animalTypes.Pets;
 
 public class AnimalsTypes {
     

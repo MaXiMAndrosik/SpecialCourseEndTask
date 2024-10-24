@@ -6,12 +6,13 @@ import java.util.List;
 
 import model.animals.Animal;
 import model.animals.animalClasses.AnimalsClasses;
+import model.animals.animalTypes.AnimalsTypes;
 import model.animals.animalsList.AnimalsList;
-import model.animals.classesTypes.AnimalsTypes;
 import model.counter.Counter;
 import model.writers.FileHandler;
+import presenter.Contract;
 
-public class Service {
+public class Service implements Contract.Service {
 
     private AnimalsList<Animal> animalsList;
     private AnimalsList<Animal> tempList;

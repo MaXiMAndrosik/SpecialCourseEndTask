@@ -3,13 +3,14 @@ package view;
 import java.time.LocalDate;
 import java.util.List;
 
+import presenter.Contract;
 import presenter.Presenter;
 import view.input.InputData;
 import view.menu.AllMenuMetods;
 import view.menu.editmenu.EditMenu;
 import view.menu.mainmenu.MainMenu;
 
-public class ConsoleUI implements View {
+public class ConsoleUI implements View, Contract.View {
     private Presenter presenter;
     private AllMenuMetods allMenu;
     private MainMenu mainMenu;
